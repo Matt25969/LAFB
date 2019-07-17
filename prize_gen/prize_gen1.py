@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, make_response
 import random
+import requests
 from random import randrange
 prize_gen = Flask(__name__)
 
@@ -9,7 +10,7 @@ def reset(prob=25):
     prize=50
     percent = random.randrange(100)
     if prob > percent:
-	
+        request.get('http://52.142.204.121:9000/notify')
         return jsonify({"User has won":prize})
     else:
         return "No prize for you"
