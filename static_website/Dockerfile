@@ -3,4 +3,5 @@ WORKDIR /build
 COPY . .
 RUN npm install
 CMD npm start
-ENTRYPOINT ["/usr/local/bin/serve", "-l", "8089"]
+EXPOSE 8089
+ENTRYPOINT ["node", "server.js"]
