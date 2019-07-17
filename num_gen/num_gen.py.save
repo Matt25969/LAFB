@@ -1,0 +1,10 @@
+from flask import Flask, jsonify, make_response
+from random import randint
+num_gen = Flask(__name__)
+
+@num_gen.route('/num_gen/', methods=['GET'])
+def num_gen_method(999999):
+    rand = randint(100000,999999)
+    return jsonify({"Random Number":rand})
+
+
