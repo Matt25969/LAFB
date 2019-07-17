@@ -13,10 +13,10 @@ def test():
     return "test"
 
 
-@app.route('/numgen/', methods=['GET'])
+@app.route('/numGen/', methods=['GET'])
 def num_gen():
     numbers = ''
-    for x in range(6):
+    for x in range(8):
         numbers += str(random.randint(0, 9))
     return jsonify({"Random numbers": numbers})
 

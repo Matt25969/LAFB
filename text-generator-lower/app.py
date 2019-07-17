@@ -13,12 +13,12 @@ def test():
     return "test"
 
 
-@app.route('/numgen/', methods=['GET'])
+@app.route('/textGen/', methods=['GET'])
 def text_gen():
-    numbers = ''
-    for x in range(6):
-        numbers += str(random.randint(0, 9))
-    return jsonify({"Random numbers": numbers})
+    letters = ''
+    for x in range(3):
+        letters += random.choice(string.ascii_lowercase)
+    return jsonify({"Random letters": letters})
 
 
 @app.route('/anEndpoint')
