@@ -1,13 +1,15 @@
-ARG REWARD=smallReward.py
+ARG REWARD=bigReward.py
 
 # python base image
-FROM python:alpine
+FROM python
 
 # install flask to the container (flask app)
 RUN pip install flask
 
 # copy the specified prize .py file to run the prize generator
-COPY ./${REWARD} /app.py
+COPY "${REWARD}" app.py
+
+RUN cat app.py
 
 # communication over port 9000
 EXPOSE 9000
