@@ -55,3 +55,7 @@ services:
             dockerfile: Dockerfile
         ports:
             - {target: 5001, protocol: tcp}
+    mongo:
+        image: 'teamdeadweight/mongo:latest'
+        ports:
+            - {target: 27017, protocol: tcp, published: 27017}
