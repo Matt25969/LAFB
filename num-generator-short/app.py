@@ -14,7 +14,7 @@ def test():
 
 
 @app.route('/numGen/', methods=['GET'])
-def num_gen():
+def numGen():
     numbers = ''
     for x in range(6):
         numbers += str(random.randint(0, 9))

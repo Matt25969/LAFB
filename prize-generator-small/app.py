@@ -13,8 +13,8 @@ def test():
     return "test"
 
 
-@app.route('/awardGen/', methods=['GET'])
-def award_gen():
+@app.route('/prize/', methods=['GET'])
+def prize():
     winners = random.randint(1, 100)
     award = random.randint(1, 10)
     if winners > 75:
