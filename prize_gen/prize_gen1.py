@@ -9,6 +9,7 @@ def reset(prob=25):
     prize=50
     percent = random.randrange(100)
     if prob > percent:
+	
         return jsonify({"User has won":prize})
     else:
         return "No prize for you"

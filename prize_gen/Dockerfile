@@ -1,6 +1,7 @@
-ARG FILE_VERSION=prize_gen1.py
-FROM python:latest
+FROM python
+ARG FILE_VERSION=1
 COPY . .
+COPY prize_gen${FILE_VERSION}.py app.py
 RUN pip install flask
 RUN pip install requests
-ENTRYPOINT ["python", "${FILE_VERSION}"]
+ENTRYPOINT ["python", "app.py"]

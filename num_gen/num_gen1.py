@@ -8,4 +8,4 @@ def num_gen_method():
     return jsonify({"Random Number":rand})
 
 if __name__ == '__main__':
-     num_gen.run(host='0.0.0.0', port=9017)
+     num_gen.run(host='0.0.0.0', port=9018)
