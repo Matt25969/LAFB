@@ -6,7 +6,7 @@ app - Flask (__name__)
 @app.route(/prize)
 def prize():
 	x = random.randint(1,101)
-	if x <= 75:
+	if x <= 50:
 		return "£0"
 	else:
 		return "£50"

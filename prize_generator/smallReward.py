@@ -9,7 +9,7 @@ def prize():
 	if x <= 75:
 		return "£0"
 	else:
-		return "£50"
+		return "£10"
 	
 	
 if __name__ == "__main__":
