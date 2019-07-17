@@ -15,15 +15,21 @@ def test():
 
 @app.route('/prize/', methods=['GET'])
 def prize():
+    req_data = {}
+    req_data['firstname'] = 'Bert'
+    req_data['lastname'] = 'Smith'
     winners = random.randint(1, 100)
     award = random.randint(1, 10)
-    if winners > 75:
-        return jsonify({"Award": str(award*100)})
-    elif winners > 50:
-        return jsonify({"Award": str(award*10)})
-    else:
-        return jsonify({"Award": "0"})
 
+    if winners > 75:
+        req_data['prize'] = str(award*100)
+    elif winners > 50:
+        req_data['prize'] = str(award*10)
+    else:
+        req_data['prize'] = "0"
+    req_data = json.dumps(data)
+    requests.post('http://example.com', data=req_data)
+    return req_data
 
 @app.route('/anEndpoint')
 def make_request():
