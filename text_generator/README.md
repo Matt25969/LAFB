@@ -10,4 +10,4 @@ _Default = 3char.py_
 
 Use the following command to build the docker image:
 
-`docker build --tag prize --no-cache --build-arg REWARD=[2char.py/3char.py] .`
+`docker build --tag prize --no-cache --build-arg APP_VERSION=[2char.py/3char.py] .`
