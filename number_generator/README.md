@@ -8,9 +8,11 @@ _Default = 6digit.py_
 
 ### Building the image
 
-Use the following command to build the docker image:
+Use one of the following commands to build the docker image:
 
-`docker build --tag number --no-cache --build-arg REWARD=[6digit.py/8digit.py] .`
+`docker build --tag number --no-cache --build-arg REWARD=6digit.py .`
+
+`docker build --tag number --no-cache --build-arg REWARD=8digit.py .`
 
 ### DockerHub images
 
