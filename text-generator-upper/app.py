@@ -14,7 +14,7 @@ def test():
 
 
 @app.route('/textGen/', methods=['GET'])
-def text_gen():
+def textGen():
     letters = ''
     for x in range(2):
         letters += random.choice(string.ascii_uppercase)
