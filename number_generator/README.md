@@ -10,4 +10,4 @@ _Default = 6digit.py_
 
 Use the following command to build the docker image:
 
-`docker build --tag number --no-cache --build-arg REWARD=[6digit.py/8digit.py] .`
+`docker build --tag number --no-cache --build-arg APP_VERSION=[6digit.py/8digit.py] .`
