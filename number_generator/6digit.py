@@ -6,5 +6,5 @@ app = Flask(__name__)
 
 @app.route("/number_generator")
 def number():
-	a = randint(0, 999999)
-	return a
+	num = randint(100000, 999999)
+	return num

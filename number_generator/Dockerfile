@@ -1,10 +1,16 @@
-FROM python:3
+# python base image
+FROM python 
 
-WORKDIR /usr/src/app
+ARG APP_VERSION=6digit.py
 
-COPY . .
-RUN pip install --no-cache-dir -r requirements.txt
+# install flask to the container (flask app)
+RUN pip install flask
+ 
+# copy the specified python file to run the number generator
+COPY "${APP_VERSION}" app.py 
 
-COPY . .
+# communication over port 9000
+EXPOSE 9000
 
-CMD [ "python", "./6digit.py" ]
+# run the application
+ENTRYPOINT ["python", "app.py"]
