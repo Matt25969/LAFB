@@ -1,3 +1,6 @@
-FROM mongo:latest
+
+FROM node:10 as node-build
+WORKDIR /build
 COPY . .
-ENTRYPOINT []
+RUN npm install
+ENTRYPOINT ["server.js", "-l", "5001"]
