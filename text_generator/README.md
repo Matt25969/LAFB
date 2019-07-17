@@ -8,9 +8,11 @@ _Default = 3char.py_
 
 ### Building the image
 
-Use the following command to build the docker image:
+Use one of the following commands to build the docker image:
 
-`docker build --tag text --no-cache --build-arg APP_VERSION=[2char.py/3char.py] .`
+`docker build --tag text --no-cache --build-arg APP_VERSION=2char.py .`
+
+`docker build --tag text --no-cache --build-arg APP_VERSION=3char.py .`
 
 ### DockerHub images
 
