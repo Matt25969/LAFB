@@ -8,9 +8,11 @@ _Default = bigReward.py_
 
 ### Building the image
 
-Use the following command to build the docker image:
+Use one of the following commands to build the docker image:
 
-`docker build --tag prize --no-cache --build-arg REWARD=[bigReward.py/smallReward.py] .`
+`docker build --tag prize --no-cache --build-arg REWARD=bigReward.py .`
+
+`docker build --tag prize --no-cache --build-arg REWARD=smallReward.py .`
 
 ### DockerHub images
 
