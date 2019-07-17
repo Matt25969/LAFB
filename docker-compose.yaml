@@ -1,0 +1,57 @@
+version: '3.7'
+services:
+    nginx:
+        image: 'teamdeadweight/nginx:latest'
+        volumes:
+            - {type: bind, source: ./nginx/nginx.conf, target: /etc/nginx/nginx.conf}
+        ports:
+            - {target: 80, published: 80, protocol: tcp}
+    server:
+        image: 'teamdeadweight/server:latest'
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        ports:
+            - {target: 8080, protocol: tcp}
+    prize_generator:
+        image: 'teamdeadweight/prize_generator:latest'
+        build:
+            context: ./prize_generator
+            dockerfile: Dockerfile
+        ports:
+            - {target: 9000, protocol: tcp}
+    text_generator:
+        image: 'teamdeadweight/text_generator:latest'
+        build:
+            context: ./text_generator
+            dockerfile: Dockerfile
+        ports:
+            - {target: 9000, protocol: tcp}
+    number_generator:
+        image: 'teamdeadweight/number_generator:latest'
+        build:
+            context: ./number_generator
+            dockerfile: Dockerfile
+        ports:
+            - {target: 9000, protocol: tcp}
+    notification_server:
+        image: 'teamdeadweight/notification_server:latest'
+        build:
+            context: ./notification_server
+            dockerfile: Dockerfile
+        ports:
+            - {target: 9000, protocol: tcp}
+    static_website:
+        image: 'teamdeadweight/static_website:latest'
+        build:
+            context: ./static_website
+            dockerfile: Dockerfile
+        ports:
+            - {target: 8089, protocol: tcp}
+    db_connector:
+        image: 'teamdeadweight/db_connector:latest'
+        build:
+            context: ./db_connector
+            dockerfile: Dockerfile
+        ports:
+            - {target: 5001, protocol: tcp}
