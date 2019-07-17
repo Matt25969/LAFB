@@ -4,7 +4,7 @@ import random
 from flask import Flask
 app = Flask(__name__)
 
-@app.route("/notify")
+@app.route("/text_generator")
 def three_char():
     text = "".join(random.sample(string.ascii_lowercase,3))
     return text
