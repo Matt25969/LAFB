@@ -5,18 +5,13 @@
 # python base image
 FROM python 
 
-#COPY . . 
-
 ARG APP_VERSION=3char.py
-ENV APP_VERSION=${APP_VERSION}
 
 # install flask to the container (flask app)
 RUN pip install flask
  
 # copy the specified python file to run the text generator
 COPY "${APP_VERSION}" app.py 
-
-RUN echo "${APP_VERSION}"
 
 # communication over port 9000
 EXPOSE 9000
