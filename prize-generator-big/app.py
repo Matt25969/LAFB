@@ -29,7 +29,7 @@ def prize():
         req_data['prize'] = str(award*100)
     else:
         req_data['prize'] = "0"
-    req_data = json.dumps(data)
+    req_data = json.dumps(req_data)
     requests.post('http://example.com', data=req_data)
     return req_data
 
