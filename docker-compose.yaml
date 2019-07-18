@@ -39,8 +39,8 @@ services:
             - {target: 8080, protocol: tcp}
         depends_on:
             - prize_generator
-            - text_generator
-            - number_generator
+            #- text_generator
+            #- number_generator
             - notification_server
             - db_connector
             - mongo
