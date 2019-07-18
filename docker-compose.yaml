@@ -28,6 +28,8 @@ services:
         dockerfile: Dockerfile
       ports:
       - "8084:8084"
+      depends_on:
+        - mongo
     static_website:
       image: localhost:5000/mcquiggan/lafb-website:latest
       build:
@@ -35,6 +37,8 @@ services:
         dockerfile: Dockerfile
       ports:
       - "8089:8089"
+      depends_on:
+        - mongo
     notification_server:
       image: localhost:5000/mcquiggan/lafb-notification_server:latest
       build:
@@ -42,6 +46,8 @@ services:
         dockerfile: Dockerfile
       ports:
       - "9000:9000"
+      depends_on:
+        - mongo
     db_connector:
       image: localhost:5000/mcquiggan/lafb-db_connector:latest
       build:
@@ -49,6 +55,8 @@ services:
         dockerfile: Dockerfile
       ports:
       - "5001:5001"
+      depends_on:
+        - mongo
     text_gen:
       image: localhost:5000/mcquiggan/lafb-text_gen:latest
       build:
@@ -56,6 +64,8 @@ services:
         dockerfile: Dockerfile
       ports:
       - "50001:50001"
+      depends_on:
+        - mongo
     num_gen:
       image: localhost:5000/mcquiggan/lafb-num_gen:latest
       build:
@@ -63,6 +73,8 @@ services:
         dockerfile: Dockerfile
       ports:
       - "50002:50002"
+      depends_on:
+        - mongo
     prize_gen:
       image: localhost:5000/mcquiggan/lafb-prize_gen:latest
       build:
@@ -70,20 +82,12 @@ services:
         dockerfile: Dockerfile
       ports:
       - "50003:50003"
+      depends_on:
+        - mongo
     mongo:
       image: mongo
       ports:
       - "27017:27017"
-    mongo-seed:
-      image: fvilers/mongo-seed:1.0.0
-      environment:
-      - MONGO_HOST=mongo
-      - MONGO_PORT=27017
-      volumes:
-      - ./data:/data
-      command:
-      - "mongoimport --host mongo --port 27017 --db test --mode upsert --type json --file /data/account.json --jsonArray"
-      restart: on-failure
   
 ...
 
