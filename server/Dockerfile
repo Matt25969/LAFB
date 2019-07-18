@@ -5,4 +5,5 @@ RUN mvn clean package
 FROM java:8
 WORKDIR /opt/website
 COPY --from=maven-build /build/target/Spring_Day_Two-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8084
 ENTRYPOINT ["/usr/bin/java", "-jar", "app.jar"]
