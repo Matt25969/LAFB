@@ -3,6 +3,7 @@ from flask import Flask, jsonify, make_response
 import sys
 import requests
 import random
+import json
 import string
 from random import randint
 app = Flask(__name__)
@@ -13,16 +14,24 @@ def test():
     return "test"
 
 
-@app.route('/prize/', methods=['GET'])
+@app.route('/prize/', methods=['POST'])
 def prize():
+
+    req_data = {}
+    req_data['firstname'] = 'Bert'
+    req_data['lastname'] = 'Smith'
     winners = random.randint(1, 100)
     award = random.randint(1, 10)
+
     if winners > 75:
-        return jsonify({"Award": str(award*500)})
+        req_data['prize'] = str(award*500)
     elif winners > 50:
-        return jsonify({"Award": str(award*100)})
+        req_data['prize'] = str(award*100)
     else:
-        return jsonify({"Award": "0"})
+        req_data['prize'] = "0"
+    req_data = json.dumps(req_data)
+    requests.post('http://example.com', data=req_data)
+    return req_data
 
 
 @app.route('/anEndpoint')
