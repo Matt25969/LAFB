@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: prize-generator
-        image: teamdeadweight/prize_generator:latest
+        image: teamdeadweight/prize_generator:bigReward
         ports:
         - containerPort: 5002
