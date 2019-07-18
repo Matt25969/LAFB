@@ -44,9 +44,9 @@ services:
             - notification_server
             - db_connector
             - mongo
-# teamdeadweight/text_generator:latest (default = 3Char.py)
-# teamdeadweight/text_generator:3Char
-# teamdeadweight/text_generator:2Char
+# teamdeadweight/text_generator:latest (default = 3char.py)
+# teamdeadweight/text_generator:3char
+# teamdeadweight/text_generator:2char
     text_generator:
         image: 'teamdeadweight/text_generator:latest'
         build:
