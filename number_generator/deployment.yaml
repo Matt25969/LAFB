@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: number-generator
-        image: teamdeadweight/number_generator:latest
+        image: teamdeadweight/number_generator:6digit
         ports:
         - containerPort: 9000
