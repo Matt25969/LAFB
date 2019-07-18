@@ -3,7 +3,7 @@ function getAPrize() {
 	let newUser = {};
 	newUser["firstName"] = document.getElementById('inputFirstName').value;	
 	newUser["lastName"] = document.getElementById('inputLastName').value;  
-	makeRequest("POST", URLstring + "/addAccount/", newUser).then((resolve) => {
+	makeRequest("POST", URLstring + "account/addAccount/", newUser).then((resolve) => {
 	var newPrize = JSON.parse(resolve);
 	document.getElementById('prize').value = resolve;
 })
