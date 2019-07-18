@@ -90,7 +90,6 @@ services:
         ports:
             - {target: 9000, protocol: tcp}
         depends_on:
-            - prize_generator
             - notification_server
             - db_connector
             - mongo
