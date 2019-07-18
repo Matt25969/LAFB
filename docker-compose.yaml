@@ -21,16 +21,55 @@ services:
         context: ./server
         dockerfile: Dockerfile
       ports:
-      - "8082:8084"
+      - "8084:8084"
     
     client:
-      image: kryan1622/kube/my/client:latest
+      image: keepkarm/client:latest
       build:
-        context: ./client
+        context: ./static_website
         dockerfile: Dockerfile
       ports:
-      - "3001:3000"
+      - "8089:8089"
 
+    notify:
+      image: keepkarm/notify:latest
+      build:
+        context: ./notification_server
+        dockerfile: Dockerfile
+      ports:
+      - "9000:9000"
+
+    text_gen:
+      image: keepkarm/text_gen:v1
+      build:
+        context: ./text_gen
+        dockerfile: Dockerfile
+      ports:
+      - "9017:9017"
+
+    num_gen:
+      image: keepkarm/num_gen:v1
+      build:
+        context: ./num_gen
+        dockerfile: Dockerfile
+      ports:
+      - "9018:9018"
+
+    prize_gen:
+      image: keepkarm/prize_gen:v1
+      build:
+        context: ./prize_gen
+        dockerfile: Dockerfile
+      ports:
+      - "5000:5000"
+
+    db_connector:
+      image: keepkarm/db_connect:latest
+      build:
+        context: ./db_connector
+        dockerfile: Dockerfile
+      ports:
+      - "5001:5001"
 
     mongo:
       image: mongo
