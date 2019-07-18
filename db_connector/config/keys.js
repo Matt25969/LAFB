@@ -1,4 +1,4 @@
 module.exports = {
-    mongoURI: "mongodb://mongo:27017/mongo"
+    mongoURI: "mongodb://mongo:27017/account"
   };
   
