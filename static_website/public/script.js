@@ -1,6 +1,10 @@
 const URLstring = "http://51.140.119.170";
 function getAPrize() {
-	
+	let newUser = {};
+	newUser["firstName"] = document.getElementById('inputFirstName').value;	
+	newUser["lastName"] = document.getElementById('inputLastName').value;  
+	makeRequest("POST", URLString + "/createUser/", newUser).then((resolve) => {
+	var newPrize = JSON.parse(resolve);
 }
 
 function makeRequest(method, url, body) {
