@@ -22,7 +22,7 @@ services:
         - prize_gen
         - server
     server:
-      image: projectdeploy1/lafb-server:latest
+      image: localhost:5000/lafb-server:latest
       build:
         context: ./server
         dockerfile: Dockerfile
@@ -31,7 +31,7 @@ services:
       depends_on:
         - mongo
     static_website:
-      image: projectdeploy1/lafb-website:latest
+      image: localhost:5000/lafb-website:latest
       build:
         context: ./static_website
         dockerfile: Dockerfile
@@ -40,7 +40,7 @@ services:
       depends_on:
         - mongo
     notification_server:
-      image: projectdeploy1/lafb-notification_server:latest
+      image: localhost:5000/lafb-notification_server:latest
       build:
         context: ./notification_server
         dockerfile: Dockerfile
@@ -49,7 +49,7 @@ services:
       depends_on:
         - mongo
     db_connector:
-      image: projectdeploy1/lafb-db_connector:latest
+      image: localhost:5000/lafb-db_connector:latest
       build:
         context: ./db_connector
         dockerfile: Dockerfile
@@ -60,7 +60,7 @@ services:
       depends_on:
         - mongo
     text_gen:
-      image: projectdeploy1/lafb-text_gen:latest
+      image: localhost:5000/lafb-text_gen:latest
       build:
         context: ./text-generator-lower
         dockerfile: Dockerfile
@@ -69,7 +69,7 @@ services:
       depends_on:
         - mongo
     num_gen:
-      image: projectdeploy1/lafb-num_gen:latest
+      image: localhost:5000/lafb-num_gen:latest
       build:
         context: ./num-generator-long
         dockerfile: Dockerfile
@@ -78,7 +78,7 @@ services:
       depends_on:
         - mongo
     prize_gen:
-      image: projectdeploy1/lafb-prize_gen:latest
+      image: localhost:5000/lafb-prize_gen:latest
       build:
         context: ./prize-gen-big-node
         dockerfile: Dockerfile
