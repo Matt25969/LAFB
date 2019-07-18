@@ -18,26 +18,7 @@ def test():
 @app.route('/prize', methods=['POST'])
 def prize():
     data = request.data
-    req_data = {}
-    req_data['firstName'] = data.get('firstName', '')
-    req_data['lastName'] = data.get('lastName', '')
-    req_data['accountnumber'] = data.get('accountnumber', '')
-    winners = random.randint(1, 100)
-    award = random.randint(1, 10)
-
-    if winners > 75:
-        req_data['prize'] = str(award*100)
-        prize = requests.get('http://example.com/notify').content
-        print(prize)
-    elif winners > 50:
-        req_data['prize'] = str(award*10)
-        prize = requests.get('http://example.com/notify').content
-        print(prize)
-    else:
-        req_data['prize'] = "0"
-    req_data = json.dumps(req_data)
-
-    return requests.post('http://example.com/createAccount', json=req_data)
+    return data
 
 
 @app.route('/anEndpoint')
