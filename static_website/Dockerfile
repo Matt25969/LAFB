@@ -1,5 +1,5 @@
-FROM node:10 
+FROM node:10
 COPY . .
-RUN npm install
-EXPOSE 5001
+RUN npm install 
+EXPOSE 8089
 ENTRYPOINT ["node", "server.js"]
