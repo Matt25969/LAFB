@@ -1,5 +1,3 @@
-#!/bin/bash
-
 #Build new images
 docker-compose build
 
