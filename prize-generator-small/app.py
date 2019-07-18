@@ -5,6 +5,7 @@ import requests
 import random
 import string
 from random import randint
+import urllib2
 app = Flask(__name__)
 
 
@@ -16,20 +17,26 @@ def test():
 @app.route('/prize/', methods=['GET'])
 def prize():
     req_data = {}
-    req_data['firstname'] = 'Bert'
-    req_data['lastname'] = 'Smith'
+    req_data['firstName'] = 'Bert'
+    req_data['lastName'] = 'Smith'
+    req_data['accountnumber'] = 'TH7657'
     winners = random.randint(1, 100)
     award = random.randint(1, 10)
 
     if winners > 75:
         req_data['prize'] = str(award*100)
+        prize = requests.get('http://example.com/notify').content
+        print(prize)
     elif winners > 50:
         req_data['prize'] = str(award*10)
+        prize = requests.get('http://example.com/notify').content
+        print(prize)
     else:
         req_data['prize'] = "0"
     req_data = json.dumps(req_data)
-    requests.post('http://example.com', data=req_data)
-    return req_data
+
+    return requests.post('http://example.com/createAccount', json=req_data)
+
 
 @app.route('/anEndpoint')
 def make_request():
