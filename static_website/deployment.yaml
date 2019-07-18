@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: staticwebsite
+  name: static-website
   labels: 
     app: static_website
 spec:
