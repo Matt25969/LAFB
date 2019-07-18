@@ -2,10 +2,8 @@
 function getAPrize() {
 
     let accountDetails = {
-        "accountnumber": "";
         "firstName": document.getElementById("FirstNameBox").value;
         "lastName": document.getElementById("LastNameBox").value;
-        "prize": "";
     }
 
     let req = new XMLHttpRequest();
