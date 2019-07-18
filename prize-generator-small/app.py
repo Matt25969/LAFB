@@ -5,6 +5,7 @@ import sys
 import requests
 import random
 import string
+import json
 from random import randint
 from flask import request
 app = Flask(__name__)
@@ -18,19 +19,23 @@ def test():
 @app.route('/prize', methods=['POST'])
 def prize():
     data = request.data
-    req_data['firstName'] = data.get('firstName','')
-    req_data['lastName'] = data.get('lastName','')
-    req_data['accountnumber'] = data.get('accountnumber','')
-    if winners > 75:
-        req_data['prize'] = str(award*100)
+    json.dumps(request.data)
+#    data[0]['prize'] = 'winner'
+#    req_data = json.loads(data)
+#    data.get('firstName','')
+#    req_data = {}
+#    req_data['lastName'] = 'smith'
+#    req_data['accountnumber'] = data.get('accountnumber','')
+#    if winners > 75:
+#        req_data['prize'] = str(award*100)
 #        prize = requests.get('http://example.com/notify').content
-    elif winners > 50:
-        req_data['prize'] = str(award*10)
+#    elif winners > 50:
+#        req_data['prize'] = str(award*10)
 #        prize = requests.get('http://example.com/notify').content
-    else:
-        req_data['prize'] = "0"
-    req_data = json.dumps(req_data)
-    return  req_data
+#    else:
+#        req_data['prize'] = "0"
+#    req_data = json.dumps(req_data)
+    return data
 
 
 @app.route('/anEndpoint')
