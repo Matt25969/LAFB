@@ -1,5 +1,6 @@
-FROM python
-COPY . .
-RUN pip install flask
-RUN pip install requests
-ENTRYPOINT ["python", "app.py"]
+FROM python:2.7
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+ENTRYPOINT ["python"]
+CMD ["app.py"]
