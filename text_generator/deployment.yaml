@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: text_generator
+  name: textgenerator
   labels: 
     app: text_generator
 spec:

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: number_generator
+  name: numbergenerator
   labels: 
     app: number_generator
 spec:
