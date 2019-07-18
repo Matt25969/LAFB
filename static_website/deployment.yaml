@@ -14,6 +14,7 @@ spec:
         app: static_website
     spec:
       containers:
-      - image: teandeadweight/static_website:latest
+      - name: static-website
+        image: teamdeadweight/static_website:latest
         ports:
         - containerPort: 8089

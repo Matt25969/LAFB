@@ -14,6 +14,7 @@ spec:
         app: number_generator
     spec:
       containers:
-      - image: teamdeadweight/number_generator:latest
+      - name: number-generator
+        image: teamdeadweight/number_generator:latest
         ports:
         - containerPort: 9000
