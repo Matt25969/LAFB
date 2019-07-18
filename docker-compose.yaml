@@ -55,6 +55,8 @@ services:
         dockerfile: Dockerfile
       ports:
       - "5001:5001"
+      links:
+        - mongo
       depends_on:
         - mongo
     text_gen:
