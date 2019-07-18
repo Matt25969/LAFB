@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.3'
 services:
     nginx:
       image: nginx
@@ -22,6 +22,8 @@ services:
         dockerfile: Dockerfile
       ports:
       - "8084:8084"
+      depends_on:
+      - account
     
     client:
       image: keepkarm/client:latest
@@ -31,13 +33,15 @@ services:
       ports:
       - "8089:8089"
 
-    notify:
+    notificationserver:
       image: keepkarm/notify:latest
       build:
         context: ./notification_server
         dockerfile: Dockerfile
       ports:
       - "9000:9000"
+      depends_on:
+      - account
 
     text_gen:
       image: keepkarm/text_gen:v1
@@ -46,6 +50,8 @@ services:
         dockerfile: Dockerfile
       ports:
       - "9017:9017"
+      depends_on:
+      - server
 
     num_gen:
       image: keepkarm/num_gen:v1
@@ -54,14 +60,18 @@ services:
         dockerfile: Dockerfile
       ports:
       - "9018:9018"
+      depends_on:
+      - server
 
-    prize_gen:
-      image: keepkarm/prize_gen:v1
+    account:
+      image: keepkarm/account:v1
       build:
-        context: ./prize_gen
+        context: ./account
         dockerfile: Dockerfile
       ports:
-      - "5000:5000"
+      - "5002:5002"
+      depends_on:
+      - db_connector
 
     db_connector:
       image: keepkarm/db_connect:latest
@@ -70,6 +80,8 @@ services:
         dockerfile: Dockerfile
       ports:
       - "5001:5001"
+      depends_on:
+      - mongo
 
     mongo:
       image: mongo
