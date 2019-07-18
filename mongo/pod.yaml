@@ -6,6 +6,7 @@ metadata:
     app: mongo
 spec:
   containers:
-    - image: teamdeadweight/mongo:latest
+    - name: mongo
+      image: teamdeadweight/mongo:latest
       ports:
       - containerPort: 27017
