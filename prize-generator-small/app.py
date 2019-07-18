@@ -15,7 +15,7 @@ def test():
     return "test"
 
 
-@app.route('/prize/', methods=['POST'])
+@app.route('/prize', methods=['POST'])
 def prize():
     data = request.data
     req_data = {}
