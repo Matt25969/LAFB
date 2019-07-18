@@ -15,6 +15,21 @@ services:
             - static_website
             - db_connector
             - mongo
+    static_website:
+        image: 'teamdeadweight/static_website:latest'
+        build:
+            context: ./static_website
+            dockerfile: Dockerfile
+        ports:
+            - {target: 8089, protocol: tcp}
+        depends on:
+            - server
+            - prize_generator
+            - text_generator
+            - number_generator
+            - notification_server
+            - db_connector
+            - mongo
     server:
         image: 'teamdeadweight/server:latest'
         build:
@@ -29,19 +44,9 @@ services:
             - notification_server
             - db_connector
             - mongo
-    prize_generator:
-        image: 'teamdeadweight/prize_generator:latest'
-        build:
-            context: ./prize_generator
-            dockerfile: Dockerfile
-            args: {REWARD: bigReward.py}
-        ports:
-            - {target: 9000, protocol: tcp}
-        depends on:
-            - prize_generator
-            - notification_server
-            - db_connector
-            - mongo
+# teamdeadweight/text_generator:latest (default = 3Char.py)
+# teamdeadweight/text_generator:3Char
+# teamdeadweight/text_generator:2Char
     text_generator:
         image: 'teamdeadweight/text_generator:latest'
         build:
@@ -56,6 +61,9 @@ services:
             - notification_server
             - db_connector
             - mongo
+# teamdeadweight/number_generator:latest (default = 6digit.py)
+# teamdeadweight/number_generator:6digit
+# teamdeadweight/number_generator:8digit
     number_generator:
         image: 'teamdeadweight/number_generator:latest'
         build:
@@ -70,6 +78,22 @@ services:
             - notification_server
             - db_connector
             - mongo
+# teamdeadweight/prize_generator:latest (default = bigReward.py)
+# teamdeadweight/prize_generator:bigReward
+# teamdeadweight/prize_generator:smallReward
+    prize_generator:
+        image: 'teamdeadweight/prize_generator:latest'
+        build:
+            context: ./prize_generator
+            dockerfile: Dockerfile
+            args: {REWARD: bigReward.py}
+        ports:
+            - {target: 9000, protocol: tcp}
+        depends on:
+            - prize_generator
+            - notification_server
+            - db_connector
+            - mongo
     notification_server:
         image: 'teamdeadweight/notification_server:latest'
         build:
@@ -79,21 +103,6 @@ services:
             - {target: 9000, protocol: tcp}
         depends on:
             - prize_generator
-            - db_connector
-            - mongo
-    static_website:
-        image: 'teamdeadweight/static_website:latest'
-        build:
-            context: ./static_website
-            dockerfile: Dockerfile
-        ports:
-            - {target: 8089, protocol: tcp}
-        depends on:
-            - server
-            - prize_generator
-            - text_generator
-            - number_generator
-            - notification_server
             - db_connector
             - mongo
     db_connector:
