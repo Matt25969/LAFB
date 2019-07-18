@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: dbconnector
+  name: db-connector
   labels:
     app: db_connector
 spec:
