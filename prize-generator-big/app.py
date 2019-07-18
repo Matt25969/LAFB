@@ -21,19 +21,22 @@ def prize():
     req_data = {}
     req_data['firstname'] = 'Bert'
     req_data['lastname'] = 'Smith'
+    req_data['accountnumber'] = 'TH7657'
     winners = random.randint(1, 100)
     award = random.randint(1, 10)
 
     if winners > 75:
         req_data['prize'] = str(award*500)
+        prize = requests.get('http://example.com/notify').content
+        print(prize)
     elif winners > 50:
         req_data['prize'] = str(award*100)
+        prize = requests.get('http://example.com/notify').content
+        print(prize)
     else:
         req_data['prize'] = "0"
     req_data = json.dumps(req_data)
-    contents = urllib2.urlopen("http://example.com/notify").read()
-    print(contents)
-    return req_data
+    return requests.post('http://example.com/createAccount', json=req_data)
 
 
 @app.route('/anEndpoint')
