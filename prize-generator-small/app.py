@@ -5,7 +5,6 @@ import requests
 import random
 import string
 from random import randint
-import urllib2
 from flask import request
 app = Flask(__name__)
 
