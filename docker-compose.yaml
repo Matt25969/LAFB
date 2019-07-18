@@ -62,9 +62,9 @@ services:
         build:
             context: ./prize_generator
             dockerfile: Dockerfile
-            args: {REWARD: bigReward.py}
+            args: {REWARD: bigReward.js}
         ports:
-            - {target: 9000, protocol: tcp}
+            - {target: 5002, protocol: tcp}
         depends_on:
             - db_connector
     notification_server:
