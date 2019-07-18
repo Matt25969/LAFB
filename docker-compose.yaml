@@ -55,21 +55,22 @@ services:
       ports:
       - "9018:9018"
 
-    prize_gen:
-      image: keepkarm/prize_gen:v1
+    account:
+      image: keepkarm/account:v1
       build:
-        context: ./prize_gen
+        context: ./account
         dockerfile: Dockerfile
       ports:
-      - "5000:5000"
+      - "5002:5002"
 
     db_connector:
-      image: keepkarm/db_connect:latest
-      build:
-        context: ./db_connector
-        dockerfile: Dockerfile
+      image: keepkarm/db_connector:latest
       ports:
-      - "5001:5001"
+      - target: 5001
+        published: 5001
+        protocol: tcp
+      depends_on:
+        - mongo
 
     mongo:
       image: mongo
