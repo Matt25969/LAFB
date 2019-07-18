@@ -80,7 +80,7 @@ services:
     prize_gen:
       image: localhost:5000/mcquiggan/lafb-prize_gen:latest
       build:
-        context: ./prize-generator-big
+        context: ./prize-gen-big-node
         dockerfile: Dockerfile
       ports:
       - "50003:50003"
