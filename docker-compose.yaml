@@ -90,7 +90,7 @@ services:
         ports:
             - {target: 9000, protocol: tcp}
         depends_on:
-            - notification_server
+            #- notification_server
             - db_connector
             - mongo
     notification_server:
