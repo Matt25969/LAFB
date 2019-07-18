@@ -1,5 +1,5 @@
 # Scripts
-Collection of useful commands for containerisation of microservices.
+Collection of useful commands for containerisation of microservices. All commands to run from root directory.
 
 ## docker.sh
 List of commands for docker:
