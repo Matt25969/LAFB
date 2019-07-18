@@ -31,7 +31,7 @@ services:
       ports:
       - "8089:8089"
 
-    notify:
+    notificationserver:
       image: keepkarm/notify:latest
       build:
         context: ./notification_server
