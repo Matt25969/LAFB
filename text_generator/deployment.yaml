@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: text-generator
-        image: teamdeadweight/text_generator:latest
+        image: teamdeadweight/text_generator:3char
         ports:
         - containerPort: 9000
