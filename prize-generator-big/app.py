@@ -18,10 +18,11 @@ def test():
 @app.route('/prize/', methods=['POST'])
 def prize():
 
+    data = request.data
     req_data = {}
-    req_data['firstname'] = 'Bert'
-    req_data['lastname'] = 'Smith'
-    req_data['accountnumber'] = 'TH7657'
+    req_data['firstName'] = data.get('firstName', '')
+    req_data['lastName'] = data.get('lastName', '')
+    req_data['accountnumber'] = data.get('accountnumber', '')
     winners = random.randint(1, 100)
     award = random.randint(1, 10)
 

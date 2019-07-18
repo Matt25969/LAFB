@@ -6,6 +6,7 @@ import random
 import string
 from random import randint
 import urllib2
+from flask import request
 app = Flask(__name__)
 
 
@@ -14,12 +15,13 @@ def test():
     return "test"
 
 
-@app.route('/prize/', methods=['GET'])
+@app.route('/prize/', methods=['POST'])
 def prize():
+    data = request.data
     req_data = {}
-    req_data['firstName'] = 'Bert'
-    req_data['lastName'] = 'Smith'
-    req_data['accountnumber'] = 'TH7657'
+    req_data['firstName'] = data.get('firstName', '')
+    req_data['lastName'] = data.get('lastName', '')
+    req_data['accountnumber'] = data.get('accountnumber', '')
     winners = random.randint(1, 100)
     award = random.randint(1, 10)
 
