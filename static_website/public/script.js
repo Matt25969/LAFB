@@ -2,17 +2,18 @@ function createAccount() {
     let account = {
         firstName: document.getElementById('firstNameForm').value,
         lastName: document.getElementById('lastNameForm').value
-    }
+    };
+    console.log(JSON.stringify(account));
 
     let req = new XMLHttpRequest();
 
     req.onload = function () {
-        let response = JSON.parse(req.response);
-        console.log(response);
+        console.log(req.responseText);
 
     }
-    req.open("POST", "http://localhost:5002/account/test");
+    req.open("POST", "http://51.144.95.241:5002/account/createAccount");
     req.send(JSON.stringify(account));
-    return console.log(response.text);
+    console.log(req.responseText);
 }
+
 
