@@ -16,4 +16,4 @@ spec:
       containers:
       - image: docker.io/mpmistry/react:latest
         ports:
-        - containerPort: 9000
+        - containerPort: 8080
