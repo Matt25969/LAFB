@@ -6,7 +6,7 @@ metadata:
     app: db_connector
 spec:
   containers:
-    - name: db_connector
+    - name: db-connector
       image: teamdeadweight/db_connector:latest
       ports:
       - containerPort: 5001
