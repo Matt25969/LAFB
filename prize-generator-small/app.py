@@ -5,6 +5,7 @@ import requests
 import random
 import string
 from random import randint
+import urllib2
 app = Flask(__name__)
 
 
@@ -29,7 +30,10 @@ def prize():
         req_data['prize'] = "0"
     req_data = json.dumps(req_data)
     requests.post('http://example.com', data=req_data)
+    contents = urllib2.urlopen("http://example.com/notify").read()
+    print(contents)
     return req_data
+
 
 @app.route('/anEndpoint')
 def make_request():
