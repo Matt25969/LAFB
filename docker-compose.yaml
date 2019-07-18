@@ -6,7 +6,7 @@ services:
             - {type: bind, source: ./nginx/nginx.conf, target: /etc/nginx/nginx.conf}
         ports:
             - {target: 80, published: 80, protocol: tcp}
-        'depends on':
+        depends on:
             - server
             - prize_generator
             - text_generator
@@ -22,7 +22,7 @@ services:
             dockerfile: Dockerfile
         ports:
             - {target: 8080, protocol: tcp}
-        'depends on':
+        depends on:
             - prize_generator
             - text_generator
             - number_generator
@@ -37,7 +37,7 @@ services:
             args: {REWARD: bigReward.py}
         ports:
             - {target: 9000, protocol: tcp}
-        'depends on':
+        depends on:
             - prize_generator
             - notification_server
             - db_connector
@@ -50,7 +50,7 @@ services:
             args: {APP_VERSION: 3char.py}
         ports:
             - {target: 9000, protocol: tcp}
-        'depends on':
+        depends on:
             - server
             - prize_generator
             - notification_server
@@ -64,7 +64,7 @@ services:
             args: {APP_VERSION: 6digit.py}
         ports:
             - {target: 9000, protocol: tcp}
-        'depends on':
+        depends on:
             - server
             - prize_generator
             - notification_server
@@ -77,7 +77,7 @@ services:
             dockerfile: Dockerfile
         ports:
             - {target: 9000, protocol: tcp}
-        'depends on':
+        depends on:
             - prize_generator
             - db_connector
             - mongo
@@ -88,7 +88,7 @@ services:
             dockerfile: Dockerfile
         ports:
             - {target: 8089, protocol: tcp}
-        'depends on':
+        depends on:
             - server
             - prize_generator
             - text_generator
@@ -106,7 +106,7 @@ services:
         restart: always
         links:
             - mongo
-        'depends on':
+        depends on:
             - mongo
     mongo:
         image: 'teamdeadweight/mongo:latest'
