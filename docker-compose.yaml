@@ -7,13 +7,13 @@ services:
         ports:
             - {target: 80, published: 80, protocol: tcp}
         depends_on:
-           # - server
-          #  - prize_generator
-          #  - text_generator
-          #  - number_generator
-          #  - notification_server
-          #  - static_website
-          #  - db_connector
+            - server
+            - prize_generator
+            - text_generator
+            - number_generator
+            - notification_server
+            - static_website
+            - db_connector
             - mongo
     static_website:
         image: 'teamdeadweight/static_website:latest'
@@ -23,12 +23,12 @@ services:
         ports:
             - {target: 8089, protocol: tcp}
         depends_on:
-            #- server
-           # - prize_generator
-           # - text_generator
-           # - number_generator
-           # - notification_server
-           # - db_connector
+            - server
+            - prize_generator
+            - text_generator
+            - number_generator
+            - notification_server
+            - db_connector
             - mongo
     server:
         image: 'teamdeadweight/server:latest'
@@ -38,11 +38,11 @@ services:
         ports:
             - {target: 8080, protocol: tcp}
         depends_on:
-           # - prize_generator
-          #  - text_generator
-          #  - number_generator
-            #- notification_server
-           # - db_connector
+            - prize_generator
+            - text_generator
+            - number_generator
+            - notification_server
+            - db_connector
             - mongo
 # teamdeadweight/text_generator:latest (default = 3char.py)
 # teamdeadweight/text_generator:3char
@@ -56,10 +56,10 @@ services:
         ports:
             - {target: 9000, protocol: tcp}
         depends_on:
-            #- server
-           # - prize_generator
-           # - notification_server
-           # - db_connector
+            - server
+            - prize_generator
+            - notification_server
+            - db_connector
             - mongo
 # teamdeadweight/number_generator:latest (default = 6digit.py)
 # teamdeadweight/number_generator:6digit
@@ -73,10 +73,10 @@ services:
         ports:
             - {target: 9000, protocol: tcp}
         depends_on:
-           # - server
-           # - prize_generator
-           # - notification_server
-           # - db_connector
+            - server
+            - prize_generator
+            - notification_server
+            - db_connector
             - mongo
 # teamdeadweight/prize_generator:latest (default = bigReward.py)
 # teamdeadweight/prize_generator:bigReward
@@ -90,9 +90,9 @@ services:
         ports:
             - {target: 9000, protocol: tcp}
         depends_on:
-            #- prize_generator
-           # - notification_server
-            #- db_connector
+            - prize_generator
+            - notification_server
+            - db_connector
             - mongo
     notification_server:
         image: 'teamdeadweight/notification_server:latest'
@@ -102,8 +102,8 @@ services:
         ports:
             - {target: 9000, protocol: tcp}
         depends_on:
-            #- prize_generator
-           # - db_connector
+            - prize_generator
+            - db_connector
             - mongo
     db_connector:
         image: 'teamdeadweight/db_connector:latest'
