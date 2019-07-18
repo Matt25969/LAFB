@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: staticwebsite
+  name: static-website
 spec:
   selector:
     app: static_website
