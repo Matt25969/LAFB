@@ -1,5 +1,37 @@
 version: '3.7'
 services:
+    nginx:
+      image: nginx
+      depends_on: 
+      - client
+      - server
+      volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+      ports:
+      - target: 80
+        protocol: tcp
+        published: 80
+      container_name: nginx
+
+    server:
+      image: keepkarm/server:latest
+      build:
+        context: ./server
+        dockerfile: Dockerfile
+      ports:
+      - "8082:8084"
+    
+    client:
+      image: kryan1622/kube/my/client:latest
+      build:
+        context: ./client
+        dockerfile: Dockerfile
+      ports:
+      - "3001:3000"
+
+
     mongo:
       image: mongo
       ports:
