@@ -19,7 +19,7 @@ def textGen():
     letters = ''
     for x in range(2):
         letters += random.choice(string.ascii_uppercase)
-    return jsonify({"Random letters": letters})
+    return letters
 
 
 @app.route('/anEndpoint')
