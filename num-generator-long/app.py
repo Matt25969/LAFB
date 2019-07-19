@@ -19,7 +19,7 @@ def numGen():
     numbers = ''
     for x in range(8):
         numbers += str(random.randint(0, 9))
-    return jsonify({"Random numbers": numbers})
+    return numbers
 
 
 @app.route('/anEndpoint')
