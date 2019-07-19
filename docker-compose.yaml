@@ -56,7 +56,7 @@ services:
       - server
 
     num_gen:
-      image: keepkarm/num_gen:v2
+      image: keepkarm/num_gen:v1
       build:
         context: ./num_gen
         dockerfile: Dockerfile
@@ -66,8 +66,10 @@ services:
       - server
 
     account:
-      image: keepkarm/account:v1
+      image: keepkarm/account:v2
       build:
+        args:
+            FILE_VERSION: 2
         context: ./account
         dockerfile: Dockerfile
       ports:
