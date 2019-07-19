@@ -1,14 +1,9 @@
 pipeline{
 	agent any
         stages{
-                stage('---clean---'){
-                        steps{
-                               sh "docker-compose down --remove-orphans"
-                        }
-                }
 		stage('---build---'){
                         steps{
-                               sh "docker-compose up --build -d"
+                               sh "docker-compose build"
                         }
                 }
 		stage('---push---'){
