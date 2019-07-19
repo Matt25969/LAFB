@@ -7,9 +7,9 @@ pipeline{
                         }
                 }
 		stage('---push---'){
-			steps{
-				sh "docker push keepkarm/server:latest"
-			}
+   			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+      			sh 'docker login -u "$USERNAME" -p "$PASSWORD"'
+      			cont.push()
 		}
 		stage('---deploy---'){
 			steps{
