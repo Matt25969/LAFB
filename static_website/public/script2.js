@@ -35,8 +35,7 @@ function promises(req) {
 }
 
 function resolved(result) {
-    let response = JSON.parse(result.response);
-    console.log(response);
+    console.log(result);
 }
 
 function rejected(reason) {
