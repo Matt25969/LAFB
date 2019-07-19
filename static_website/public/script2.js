@@ -1,8 +1,8 @@
 
 function getAPrize() {
 
-    firstName = document.getElementById("FirstNameBox").value;
-    lastName = document.getElementById("LastNameBox").value;
+    firstName = document.getElementById("inputFirstName").value;
+    lastName = document.getElementById("inputLastName").value;
     let accountDetails = { firstName: firstName, lastName: lastName };
 
     let req = new XMLHttpRequest();
