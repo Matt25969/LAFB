@@ -8,7 +8,7 @@ pipeline{
                 }
 		stage('---push---'){
 			steps{
-   				sh "sudo docker-compose push"
+   				sh "docker-compose push"
 			}
 		}
 		stage('---deploy---'){
