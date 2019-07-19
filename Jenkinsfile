@@ -8,7 +8,7 @@ pipeline{
                 }
 		stage('---push---'){
 			steps{
-				sh "docker-compose push"
+   				sh "docker-compose push"
 			}
 		}
 		stage('---deploy---'){
@@ -18,3 +18,5 @@ pipeline{
 		}
 	}
 }
+
+
