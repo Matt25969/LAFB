@@ -7,9 +7,11 @@ pipeline{
                         }
                 }
 		stage('---push---'){
-   			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-      			sh 'docker login -u "$USERNAME" -p "$PASSWORD"'
-      			cont.push()
+			steps{
+   				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+      				sh 'docker login -u "$USERNAME" -p "$PASSWORD"'
+      				cont.push()
+			}
 		}
 		stage('---deploy---'){
 			steps{
