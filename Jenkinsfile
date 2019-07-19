@@ -8,12 +8,12 @@ pipeline{
                 }
 		stage('---push---'){
 			steps{
-				sh "docker-compose push"
+				sh "sudo docker-compose push"
 			}
 		}
 		stage('---deploy---'){
 			steps{
-				sh "docker stack deploy --compose-file docker-compose.yaml devops"
+				sh "sudo docker stack deploy --compose-file docker-compose.yaml devops"
 			}
 		}
 	}
