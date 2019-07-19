@@ -8,7 +8,7 @@ pipeline{
                 }
 		stage('---push---'){
 			steps{
-				sh "docker-compose push"
+				sh "sudo docker push keepkarm/server:latest"
 			}
 		}
 		stage('---deploy---'){
