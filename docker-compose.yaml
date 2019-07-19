@@ -16,7 +16,7 @@ services:
         published: 80
 
     server:
-      image: ayshamarty/server:latest
+      image: keepkarm/server:latest
       build:
         context: ./server
         dockerfile: Dockerfile
@@ -26,7 +26,7 @@ services:
       - account
     
     client:
-      image: ayshamarty/client:latest
+      image: keepkarm/client:latest
       build:
         context: ./static_website
         dockerfile: Dockerfile
@@ -34,7 +34,7 @@ services:
       - "8089:8089"
 
     notificationserver:
-      image: ayshamarty/notify:latest
+      image: keepkarm/notify:latest
       build:
         context: ./notification_server
         dockerfile: Dockerfile
@@ -44,7 +44,7 @@ services:
       - account
 
     text_gen:
-      image: ayshamarty/text_gen:v1
+      image: keepkarm/text_gen:v1
       build:
         context: ./text_gen
         dockerfile: Dockerfile
@@ -54,7 +54,7 @@ services:
       - server
 
     num_gen:
-      image: ayshamarty/num_gen:v1
+      image: keepkarm/num_gen:v1
       build:
         context: ./num_gen
         dockerfile: Dockerfile
@@ -64,7 +64,7 @@ services:
       - server
 
     account:
-      image: ayshamarty/account:v1
+      image: keepkarm/account:v1
       build:
         context: ./account
         dockerfile: Dockerfile
@@ -74,7 +74,7 @@ services:
       - db_connector
 
     db_connector:
-      image: ayshamarty/db_connect:latest
+      image: keepkarm/db_connect:latest
       build:
         context: ./db_connector
         dockerfile: Dockerfile
