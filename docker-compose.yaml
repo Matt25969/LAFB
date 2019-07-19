@@ -44,8 +44,10 @@ services:
       - account
 
     text_gen:
-      image: keepkarm/text_gen:v1
+      image: keepkarm/text_gen:v2
       build:
+        args:
+            FILE_VERSION: 2
         context: ./text_gen
         dockerfile: Dockerfile
       ports:
@@ -56,6 +58,8 @@ services:
     num_gen:
       image: keepkarm/num_gen:v1
       build:
+        args:
+            FILE_VERSION: 1
         context: ./num_gen
         dockerfile: Dockerfile
       ports:
@@ -64,8 +68,10 @@ services:
       - server
 
     account:
-      image: keepkarm/account:v1
+      image: keepkarm/account:v2
       build:
+        args:
+            FILE_VERSION: 2
         context: ./account
         dockerfile: Dockerfile
       ports:
