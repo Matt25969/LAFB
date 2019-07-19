@@ -13,7 +13,6 @@ services:
       - target: 80
         protocol: tcp
         published: 80
-      container_name: nginx
 
     server:
       image: keepkarm/server:latest

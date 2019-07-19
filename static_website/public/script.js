@@ -11,7 +11,7 @@ function createAccount() {
         console.log(req.responseText);
 
     }
-    req.open("POST", "http://51.144.95.241:5002/account/createAccount");
+    req.open("POST", "http://51.144.95.241:8084/addAccount");
     req.send(JSON.stringify(account));
     console.log(req.responseText);
 }
