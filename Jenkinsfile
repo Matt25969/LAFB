@@ -3,7 +3,7 @@ pipeline{
         stages{
                 stage('---clean---'){
                         steps{
-                               sh "docker-compose down"
+                               sh "docker-compose down --remove-orphans"
                         }
                 }
 		stage('---build---'){
@@ -18,7 +18,7 @@ pipeline{
 		}
 		stage('---deploy---'){
 			steps{
-				sh "docker stack deploy --compose-file docker-compose.yaml stackdemo"
+				sh "docker stack deploy --compose-file docker-compose.yaml devops"
 			}
 		}
 	}
