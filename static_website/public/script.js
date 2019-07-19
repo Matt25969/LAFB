@@ -3,7 +3,6 @@ function createAccount() {
         firstName: document.getElementById('firstNameForm').value,
         lastName: document.getElementById('lastNameForm').value
     };
-    console.log(JSON.stringify(account));
 
     let req = new XMLHttpRequest();
 
