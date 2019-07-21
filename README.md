@@ -18,18 +18,18 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 [Acknowledgements](#ack)
 
 <a name="brief"></a>
-## The Brief
+# The Brief
 
 
 
 <a name="architecture"></a>
-## Architecture
-#### Before
+# Architecture
+### Before
 
-#### After
+### After
 
 <a name="tech"></a>
-### Technologies Used
+## Technologies Used
 
 * Mongo - Database
 * Node - creating the account generator which includes generating the prize
@@ -43,17 +43,17 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 * Docker Swarm
 
 <a name="depl"></a>
-## Deployment
+# Deployment
 
 <a name="prereq"></a>
-### Prerequisites
+## Prerequisites
 * An Azure virtual machine with Jenkins, Docker and Docker-Compose installed
 * At least one other Azure virtual machine with Docker installed
 * Access to a Dockerhub registry
 
-### Installing Jenkins, Docker and Docker Compose, and setting up the swarm
+## Installing Jenkins, Docker and Docker Compose, and setting up the swarm
 
-#### Setting up the project:
+### Setting up the project:
 
 1. Create a new resource group:
 
@@ -76,7 +76,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 
 <p align="center">
 	
-**git clone https://github.com/kryan1622/LAFB.git**
+	git clone https://github.com/kryan1622/LAFB.git
 
 </p>
 
@@ -84,21 +84,21 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 
 <p align="center">
 	
-**sh ~/LAFB/installation/docker.sh**
+	sh ~/LAFB/installation/docker.sh
 	
 *remember to copy this script and run it on your worker nodes*
-
-**sh ~/LAFB/installation/jenkins.sh**
+	
+	*sh ~/LAFB/installation/jenkins.sh
 
 </p>
 
-#### Building the images
+### Building the images
 
 1. Build docker images
 
 <p align="center">
 	
-**docker-compose build**
+	docker-compose build
 
 </p>
 
@@ -113,7 +113,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 
 </p>
 
-#### Setting up the swarm
+### Setting up the swarm
 
 1. Initialise your swarm in the manager node
 
@@ -133,7 +133,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 
 </p>
 
-#### Setting up Continuous Integration with Jenkins
+### Setting up Continuous Integration with Jenkins
 
 1. As the Jenkins user, login to a dockerhub account that has access to the registry:
 
@@ -183,34 +183,34 @@ Then in the payload URL http://username:password@PublicIP:8080/job/jobname/build
 
 
 <a name="CI"></a>
-### CI pipeline
+## CI pipeline
 ![CI Pipeline](/documentation/CIpipeline.png)
 
-#### Overview
+### Overview
 The above diagram shows the flow of the continuous integration pipeline.
 When a developer makes a change to the application in the source code and pushed to GitHub, the webhook is triggered and the Jenkins pipeline will automatically run.
 The pipeline runs the following stages:
-##### Build
+#### Build
    * Goes through the docker-compose.yaml and rebuilds any images that have been changed
-##### Push
+#### Push
    * Pushes changed images to dockerhub
-##### Deploy
+#### Deploy
    * Updates changed containers in the stack without redeploying the entire application or affecting the user experience
 
-#### Switching Implementations
+### Switching Implementations
 The client asked for three different unique implementations to be included, these were for the prize generator, number generator and account generator. We have provided these and they can be seemlessly switched out for each other.
 The images used are as follows:
-##### prize generator
+#### prize generator
 keepkarm/account:v1
    * on creating an account, generates a prize of £50 or £0 with a 25% probability of winning
 keepkarm/account:v2
    * on creating an account, generates a prize of £100 or £0 with a 25% probability of winning
-##### text generator
+#### text generator
 keepkarm/text_gen:v1
    * generates a random string of three lowercase letters
 keepkarm/text_gen:v2
    * generates a random string of two uppercase letters
-##### number generator
+#### number generator
 keepkarm/num_gen:v1
    * generates a random six digit number
 keepkarm/num_gen:v2
@@ -219,7 +219,7 @@ keepkarm/num_gen:v2
 If the bank's developers want to switch out any of these implementations for the other, all they need to do is edit the docker-compose.yaml file and push it up to git hub. They can swap the implementations for any of the services by changing both version number in the image name, and the number in the build args option. It is crucial to note that that **both numbers must match**. 
 When the new docker-compose.yaml is pushed to GitHub
 
-### Improvements for the Future
+## Improvements for the Future
 Using a local registry would be helpful if deploying this application continuously. In cases of internet connection failures or dockerhub going down (which is not unlikely), images can still be easily accessed. 
 We suggest using a registry container to improve redundancy.
 
