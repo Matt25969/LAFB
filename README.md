@@ -6,12 +6,14 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 [Brief](#brief)
    
 [Architecture](#architecture)
-     
-[Technologies Used](#tech)
 
 [Deployment](#depl)
    * [Prerequisites and Installation Guide](#prereq)
    * [CI Pipeline](#CI)
+     
+[Technologies Used](#tech)
+
+[Risk Management](#risk)
 
 [Authors](#auth)
 
@@ -28,20 +30,6 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 
 ### After
 ![Architecture after](documentation/readme_diagrams/post-architecture.png)
-
-<a name="tech"></a>
-## Technologies Used
-
-* Mongo - Database
-* Node - creating the account generator which includes generating the prize
-* Python - creating the number and text generator which generates an account number
-* Jenkins - CI Server
-* [Git](https://github.com/ayshamarty/SoloProject.git) - VCS
-* [Trello](https://trello.com/b/yf6TuPx0/devops-project) - Project Tracking
-* Azure - Live Environment
-* Docker-Compose - builds the images used to create our containers
-* [DockerHub](https://cloud.docker.com/u/keepkarm/repository/list) - registry for storing and updating images used for deployment
-* Docker Swarm
 
 <a name="depl"></a>
 # Deployment
@@ -217,9 +205,41 @@ keepkarm/num_gen:v2
 If the bank's developers want to switch out any of these implementations for the other, all they need to do is edit the docker-compose.yaml file and push it up to git hub. They can swap the implementations for any of the services by changing both version number in the image name, and the number in the build args option. It is crucial to note that that **both numbers must match**. 
 When the new docker-compose.yaml is pushed to GitHub
 
-## Improvements for the Future
+### Improvements for the Future
 Using a local registry would be helpful if deploying this application continuously. In cases of internet connection failures or dockerhub going down (which is not unlikely), images can still be easily accessed. 
 We suggest using a registry container to improve redundancy.
+
+<a name="tech"></a>
+### Technologies Used
+
+* Mongo - Database
+* Node - creating the account generator which includes generating the prize
+* Python - creating the number and text generator which generates an account number
+* Jenkins - CI Server
+* [Git](https://github.com/ayshamarty/SoloProject.git) - VCS
+* [Trello](https://trello.com/b/yf6TuPx0/devops-project) - Project Tracking
+* Azure - Live Environment
+* Docker-Compose - builds the images used to create our containers
+* [DockerHub](https://cloud.docker.com/u/keepkarm/repository/list) - registry for storing and updating images used for deployment
+* Docker Swarm
+
+<a name="risk"></a>
+### Risk Management and Tracking
+As well as managing our tasks using a kanban system in Trello, we regularly tracked risks throughout the project.
+We used the three column format to lay out our risks and plot them on a risk impact graph along with the result of the output. We tracked risk throughout the project by adding them to the table and graph . Below are the risk management diagrams at the beginning and end of the project:
+
+#### Three-Column Format Before:
+![pre-risk 3CF table](documentation/risk_management/pre-risk_management_3CF_table.png)
+
+#### Risk Impact Graph Before:
+![pre-risk diagram](documentation/risk_management/pre-risk_management.png)
+
+#### Three-Column Format After:
+![post-risk 3CF table](documentation/risk_management/post-risk_management_3CF_table.png)
+
+#### Risk Impact Graph After:
+![post-risk diagram](documentation/risk_management/post-risk_management.png)
+
 
 <a name="auth"></a>
 ## Authors
