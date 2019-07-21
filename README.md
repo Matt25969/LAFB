@@ -21,12 +21,13 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 # The Brief
 
 
-
 <a name="architecture"></a>
 # Architecture
 ### Before
+![Architecture before](documentation/readme_diagrams/pre-architecture.png)
 
 ### After
+![Architecture after](documentation/readme_diagrams/post-architecture.png)
 
 <a name="tech"></a>
 ## Technologies Used
@@ -170,24 +171,18 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 6. Set up the pipeline
    1. Create Jenkins pipeline by selecting the new item option. Then name the job and select the pipeline option.
 
-   2. Then in the general section select the GitHub project option and copy in the URL below.
-https://github.com/kryan1622/LAFB.git
+   2. Create webhook by selecting the trigger build remotely option in "Build Triggers" and choose a token which will be used in the URL
 
-   3. Create webhook by selecting the trigger build remotely option in the Build Triggers section and type in:
-DEVOPS
+   3. In "Pipeline", select the "Pipeline Script from SCM" option in "Definition". Elect Git in the dropdown menu of SCM and copy in the URL used above into Repository URL.  
 
-   4. In the pipeline section, select the "Pipeline Script from SCM" option in "Definition". elect Git in the dropdown menu of SCM and copy in the URL used above into Repository URL.  
+7. To complete the webhook go into the settings option within the GitHub repository. Then select the webhook tab and create a new webhook
 
-To complete the webhook go into the settings option within the GitHub repository. Then select the webhook tab and select
-
-http://51.144.95.241:8080/job/jobname/build 
-
-Then in the payload URL http://username:password@PublicIP:8080/job/jobname/build?token=TOKEN
+8. Format the payload URL in the following way: http://username:password@PublicIP:8080/job/jobname/build?token=TOKEN (where TOKEN is the token chosen in step 6.2)
 
 
 <a name="CI"></a>
 ## CI pipeline
-![CI Pipeline](/documentation/CIpipeline.png)
+![CI Pipeline](documentation/readme_diagrams/CI_pipeline.png)
 
 ### Overview
 The above diagram shows the flow of the continuous integration pipeline.
