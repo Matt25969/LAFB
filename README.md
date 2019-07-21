@@ -88,7 +88,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 	
 *remember to copy this script and run it on your worker nodes*
 	
-	*sh ~/LAFB/installation/jenkins.sh
+	sh ~/LAFB/installation/jenkins.sh
 
 </p>
 
@@ -105,11 +105,11 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 2. Push docker images to the desired dockerhub account by first logging onto dockerhub within the virtual machine
 <p align="center">
 	
-**docker login**
+	docker login
 	
 *Enter username and password when requested*
 
-**docker-compose push**
+	docker-compose push
 
 </p>
 
@@ -119,7 +119,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 
 <p align="center">
 	
-**docker swarm init**
+	docker swarm init
 	
 *this will return a command with a unique token which you can run in any number of other virtual machines to set them up as your worker nodes*
 
@@ -129,7 +129,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 
 <p align="center">
 	
-**docker stack deploy --compose-file docker-compose.yaml devops**
+	docker stack deploy --compose-file docker-compose.yaml devops
 
 </p>
 
@@ -139,8 +139,8 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 
 <p align="center">
 	
-**sudo su Jenkins**
-**docker login**
+	sudo su jenkins
+	docker login
 *Enter username and password when requested*
 
 </p>
@@ -149,7 +149,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 
 <p align="center">
 	
-**az vm open-port -g devops -n devopsproject --port 8080 --priority 900**
+	az vm open-port -g devops -n devopsproject --port 8080 --priority 900
 </p>
 
 3. Access Jenkins site using the public ip address of the virtual machine being used with the addition of :8080 at the end. For example:
@@ -158,7 +158,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 
 <p text align="center">
 	
-**sudo cat /var/lib/jenkins/secrets/initialAdminPassword**
+	sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 </p>
 
@@ -191,11 +191,11 @@ The above diagram shows the flow of the continuous integration pipeline.
 When a developer makes a change to the application in the source code and pushed to GitHub, the webhook is triggered and the Jenkins pipeline will automatically run.
 The pipeline runs the following stages:
 #### Build
-   * Goes through the docker-compose.yaml and rebuilds any images that have been changed
+*Goes through the docker-compose.yaml and rebuilds any images that have been changed*
 #### Push
-   * Pushes changed images to dockerhub
+*Pushes changed images to dockerhub*
 #### Deploy
-   * Updates changed containers in the stack without redeploying the entire application or affecting the user experience
+*Updates changed containers in the stack without redeploying the entire application or affecting the user experience*
 
 ### Switching Implementations
 The client asked for three different unique implementations to be included, these were for the prize generator, number generator and account generator. We have provided these and they can be seemlessly switched out for each other.
