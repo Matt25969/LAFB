@@ -25,14 +25,40 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 <a name="brief"></a>
 # The Brief
 
+The Little Anchorage Financial Bank (LAFB) has an online application for signing up new members to their banking service. Currently, the application is monolithic with a tightly coupled architecture and is deployed through an on-site site server. 
+The brief is to decouple the application, and deploy it to the cloud using microservices.
+They have also asked us to provide new microservices, namely a text generator and number generator which will be used to generate and account number, and a prize generator which will be used to allocate prizes when members sign up to the bank. Each of these microservices must have two implementations that can be seemlessly switched in and out without affecting the user experience
+
+The implementations required are as follows:
+
+1. Prize Generator:
+   * on creating an account, the customer has a chance of winning a small prize
+   * on creating an account, the customer has a chance of winning a large prize
+2. Text Generator
+   * generates a random string of three lowercase letters
+   * generates a random string of two uppercase letters
+3. Number Generator:
+   * generates a random six digit number
+    * generates a random eight digit number
 
 <a name="architecture"></a>
 # Architecture
 ### Before
 ![Architecture before](documentation/readme_diagrams/pre-architecture.png)
 
+The brief of this project is to modernise the architecture and deployment of an application used by LAFB to sign up new members to their banking service. There are several improvements could be made to the efficiency of the application.
+
+The first issue is that the application is monolithic so has a tightly coupled architecture, meaning the components of the application are interconnected and interdependent. Therefore, each component and its associated components must be present for code to be executed or compiled. In addition, if a component needs to be updated the whole application must be rewritten.
+
+Another issue present in the original architecture is that the application is served using an on-premise server. One disadvantage of this is the high cost associated with maintaining this type of server, for example ensuring adequate temperature control and ventilation can be very expensive. Furthermore, the level of security for an on-premise server is questionable. This is because internal sabotage is always a possibility whether this is a physical or cyber-attack. Finally, using an on-premise server limits the scalability of the application. This could be improved by adding additional servers. However, this option is not flexible as if the demand on the application decreases the cost of maintaining the additional servers is still present.    
+
+
 ### After
 ![Architecture after](documentation/readme_diagrams/post-architecture.png)
+
+The new architecture of the project has solved the monolithic nature of the old application by splitting it into various microservices. Each microservice, represented by a block in the diagram, is deployed as its own container using Docker, and these containers are orchestrated by Docker Swarm As these microservices are loosely coupled with the rest of application, updates can be made without having to rewrite the whole application. 
+
+To resolve the issue of the application being served using an on-premise server, the application is now deployed using the cloud service Microsoft Azure which offers a much cheaper, more efficent and scalable solution for the client.
 
 <a name="depl"></a>
 # Deployment
