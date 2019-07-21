@@ -63,6 +63,7 @@ To create an OOP-based application with utilisation of supporting tools, methodo
 2. Create a new virtual machine
 <p align="center">
 **az vm create -g devops -n ManagerNode --image UbuntuLTS -l uksouth**
+
 *repeat this command at least once to create your worker nodes, renaming the machines in the -n tag (eg -n Worker1)*
 </p>
 
