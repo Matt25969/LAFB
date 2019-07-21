@@ -1,25 +1,17 @@
-# Personal yoga application
+# Little Anchorage Financial Bank: DevOps Project
 
-In fulfilment of the solo project assignment due Monday week 7 at QA consulting.
+In fulfilment of the group DevOps project assignment due Monday week 11 at QA consulting.
 
 ## Index
 [Brief](#brief)
-   * [Solution](#solution)
    
 [Architecture](#architecture)
-   * [Entity Relationship Diagrams](#erd)
-   * [Multi Tier Architechture Diagram](#mla)
-	
-[Testing](#testing)
-   * [Report](#report)
-
      
+[Technologies Used](#tech)
+
 [Deployment](#depl)
-   * [Technologies Used](#tech)
-     
-[Front End Design](#FE)
-
-[Improvements for the Future](#improve)
+   * [Prerequisites and Installation Guide](#prereq)
+   * [CI Pipeline](#CI)
 
 [Authors](#auth)
 
@@ -30,90 +22,177 @@ In fulfilment of the solo project assignment due Monday week 7 at QA consulting.
 
 To create an OOP-based application with utilisation of supporting tools, methodologies and technologies that encapsulate all core modules covered during training. The application must manipulate two tables with full CRUD functionality.
 
-<a name="solution"></a>
-### Solution
-
-I decided to create a personal yoga application that would allow the user to create poses and routines, as well as add and remove poses from each routine.
-
-The many to many relationship between poses and routines is working, where poses can be added and removed from routines.
-
 <a name="architecture"></a>
 ## Architecture
-<a name="erd"></a>
-### Entity Relationship Diagrams
-#### Initial plan
-![Initial ERD](/Documentation/ERD_Initial_Plan.jpg)
+#### Before
 
-The initial plan for the ERD consisted of a lot more tables and entities than were produced in the final application. The tables are coloured based on how I had hoped to prioritise the features of the application, and therefore the order in which I would tackle them. Given the time constraints, I only managed to deliver two tables plus a join, as depicted below
+#### After
 
-#### Delivered solution
-![Final ERD](/Documentation/ERD_Final.jpg)
+<a name="tech"></a>
+### Technologies Used
 
-As shown in this ERD, I ended up changing the focus of the initial tables. After building the first entity (poses), I concluded it made more sense to continue making a routine table first, encompassing a many-to-many relationship between the two. My reasoning was that it would make for a more interesting user experience to create routines from the poses, rather than arbitrarily add health benefits to each pose.
-
-<a name="mla"></a>
-### Multi Tier Architecture Diagram
-Please click on the diagram for a high resolution version:
-![MTA](/Documentation/MTA.jpg)
-
-This is a very high-level architecture diagram to demonstrate the architecture of the application. It does not include getters and setters, test classes, or constants classes. 
-
-
-<a name="testing"></a>
-## Testing
-
-JUnit, Mockito and Selenium tests have been used for automated testing, and SonarLint/SonarQube for static reporting and refactoring.
-
-<a name="report"></a>
-### Report
-
-[Link to Final Surefire Report](/Documentation/Surefire_Report.pdf)
-
-Test coverage for the backend is at 84%, there are as of yet no working Selenium tests but hope to get these running soon.
-The SonarQube static report shows 9 code smells remaining, 0 bugs, 0 duplications and 0 vulnerabilities.
+* Mongo - Database
+* Node - creating the account generator which includes generating the prize
+* Python - creating the number and text generator which generates an account number
+* Jenkins - CI Server
+* [Git](https://github.com/ayshamarty/SoloProject.git) - VCS
+* [Trello](https://trello.com/b/yf6TuPx0/devops-project) - Project Tracking
+* Azure - Live Environment
+* Docker-Compose - builds the images used to create our containers
+* [DockerHub](https://cloud.docker.com/u/keepkarm/repository/list) - registry for storing and updating images used for deployment
+* Docker Swarm
 
 <a name="depl"></a>
 ## Deployment
 
-The build, test and deployment process was automated using Jenkins, with a webhook to GitHub which was triggered with every push event
+<a name="prereq"></a>
+### Prerequisites
+* An Azure virtual machine with Jenkins, Docker and Docker-Compose installed
+* At least one other Azure virtual machine with Docker installed
+* Access to a Dockerhub registry
 
-This application can be deployed both locally and externally through a virtual machine. The constants.js file has commented out options to switch from an external to local IP address.
+#### Installing Jenkins, Docker and Docker Compose, and setting up the swarm
 
-![Deployment Pipeline](/Documentation/CI_pipeline.jpg)
-<a name="tech"></a>
-### Technologies Used
+##### Setting the project
 
-* H2 Database Engine - Database
-* Java - Logic
-* Wildfly - Deployment
-* Jenkins - CI Server
-* Maven - Dependency Management
-* Jacoco, EclEmma, Surefire - Test Reporting
-* SonarQube - Static Testing
-* [Git](https://github.com/ayshamarty/SoloProject.git) - VCS
-* [Trello](https://trello.com/qasoloproject) - Project Tracking
-* GCP - Live Environment
+1. Create a new resource group
+<p align="center">
+**az group create –name devops -l uksouth**
+</p>
 
-<a name="FE"></a>
-## Front End Design
-### Wireframes
-Poses
-![Poses Wireframe](/Documentation/Poses_Wireframe.png)
-Routines
-![Routines Wireframe](/Documentation/Routines_Wireframe.png)
-### Final Appearance
+2. Create a new virtual machine
+<p align="center">
+**az vm create -g devops -n ManagerNode --image UbuntuLTS -l uksouth**
+*repeat this command at least once to create your worker nodes, renaming the machines in the -n tag (eg -n Worker1)*
+</p>
 
-<a name="improve"></a>
-## Improvements for the Future
+3. Clone down the project within your ManagerNode
+<p align="center">
+**git clone https://github.com/kryan1622/LAFB.git**
+</p>
 
-Currently, IDs are required to update poses and routines, and to add or remove poses from routines. In my next sprint, I would like to create buttons in the front end which allow this functionality without the need for IDs, which would allow the object IDs to be hidden from the user.
+4. Install docker and jenkins with with the included scripts and follow the instructions
+<p align="center">
+**sh ~/LAFB/installation/docker.sh**
+*remember to copy this script and run it on your worker nodes*
 
-In later sprints, I would also like create a health-benefit entity which would have a many to many relationship with poses, so that users can create routines based on their focus for their practice. After this, I would add the capability to create different user accounts. At this point, I would remove the functionality for the user to add and remove poses themselves in the front end. These would instead be hard coded into the database, which the user could manipulate only for adding and removing them from their own routines.
+**sh ~/LAFB/installation/jenkins.sh**
+</p>
+
+##### Building the images
+
+1. Build docker images
+<p align="center">
+**docker-compose build**
+</p>
+
+2. Push docker images to the desired dockerhub account by first logging onto dockerhub within the virtual machine
+<p align="center">
+**docker login**
+*Enter username and password when requested*
+
+**docker-compose push**
+</p>
+
+##### Setting up the swarm
+
+1. Initialise your swarm in the manager node
+<p align="center">
+**docker swarm init**
+*this will return a command with a unique token which you can run in any number of other virtual machines to set them up as your worker nodes*
+</p>
+
+2. Deploy containers with the built images in docker swarm
+<p align="center">
+**docker stack deploy --compose-file docker-compose.yaml devops**
+</p>
+
+##### Setting up Continuous Integration with Jenkins
+
+q. As the Jenkins user, login to a dockerhub account that has access to the registry:
+<p align="center">
+**sudo su Jenkins**
+**docker login**
+*Enter username and password when requested*
+</p>
+
+2. Expose port 8080 to access Jenkins externally using the command:
+<p align="center">
+**az vm open-port -g devops -n devopsproject --port 8080 --priority 900**
+</p>
+
+3. Access Jenkins site using the public ip address of the virtual machine being used with the addition of :8080 at the end. For example:
+
+4. Get password for initial screen in Jenkins using the command:
+<p align="center">
+**sudo cat /var/lib/jenkins/secrets/initialAdminPassword**
+</p>
+
+5. On the customize Jenkins page select the option to Install suggested plugins, and create your username and password.
+
+6. Set up the pipeline
+..1. Create Jenkins pipeline by selecting the new item option. Then name the job and select the pipeline option.
+
+..2. Then in the general section select the GitHub project option and copy in the URL below.
+https://github.com/kryan1622/LAFB.git
+
+..3. Create webhook by selecting the trigger build remotely option in the Build Triggers section and type in:
+DEVOPS
+
+..4. In the pipeline section, select the "Pipeline Script from SCM" option in "Definition". elect Git in the dropdown menu of SCM and copy in the URL used above into Repository URL.  
+
+To complete the webhook go into the settings option within the GitHub repository. Then select the webhook tab and select
+
+http://51.144.95.241:8080/job/jobname/build 
+
+Then in the payload URL http://username:password@PublicIP:8080/job/jobname/build?token=TOKEN
+
+
+<a name="CI"></a>
+### CI pipeline
+![CI Pipeline](/documentation/CIpipeline.png)
+
+#### Overview
+The above diagram shows the flow of the continuous integration pipeline.
+When a developer makes a change to the application in the source code and pushed to GitHub, the webhook is triggered and the Jenkins pipeline will automatically run.
+The pipeline runs the following stages:
+##### Build
+   * Goes through the docker-compose.yaml and rebuilds any images that have been changed
+##### Push
+   * Pushes changed images to dockerhub
+##### Deploy
+   * Updates changed containers in the stack without redeploying the entire application or affecting the user experience
+
+#### Switching Implementations
+The client asked for three different unique implementations to be included, these were for the prize generator, number generator and account generator. We have provided these and they can be seemlessly switched out for each other.
+The images used are as follows:
+##### prize generator
+keepkarm/account:v1
+   * on creating an account, generates a prize of £50 or £0 with a 25% probability of winning
+keepkarm/account:v2
+   * on creating an account, generates a prize of £100 or £0 with a 25% probability of winning
+##### text generator
+keepkarm/text_gen:v1
+   * generates a random string of three lowercase letters
+keepkarm/text_gen:v2
+   * generates a random string of two uppercase letters
+##### number generator
+keepkarm/num_gen:v1
+   * generates a random six digit number
+keepkarm/num_gen:v2
+    * generates a random eight digit number
+	
+If the bank's developers want to switch out any of these implementations for the other, all they need to do is edit the docker-compose.yaml file and push it up to git hub. They can swap the implementations for any of the services by changing both version number in the image name, and the number in the build args option. It is crucial to note that that **both numbers must match**. 
+When the new docker-compose.yaml is pushed to GitHub
+
+### Improvements for the Future
+Using a local registry would be helpful if deploying this application continuously. In cases of internet connection failures or dockerhub going down (which is not unlikely), images can still be easily accessed. 
+We suggest using a registry container to improve redundancy.
 
 <a name="auth"></a>
 ## Authors
 
-Aysha Marty
+Aysha Marty and Krystal Ryan
 
 <a name="ack"></a>
 ## Acknowledgements
