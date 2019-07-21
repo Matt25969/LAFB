@@ -10,10 +10,13 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 [Deployment](#depl)
    * [Prerequisites and Installation Guide](#prereq)
    * [CI Pipeline](#CI)
-     
-[Technologies Used](#tech)
+       * [Overview](#overview)
+       * [Switching Implementations](#impl)
 
-[Risk Management](#risk)
+[Project Planning](#plan)
+   * [Technologies Used](#tech)
+   * [Risk Management](#risk)
+   * [Improvements for the Future](#improve)
 
 [Authors](#auth)
 
@@ -49,7 +52,6 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 <p align="center">
 	
 	az group create –name devops -l uksouth
-
 </p>
 
 2. Create a new virtual machine:
@@ -172,6 +174,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 ## CI pipeline
 ![CI Pipeline](documentation/readme_diagrams/CI_pipeline.png)
 
+<a name="overview"></a>
 ### Overview
 The above diagram shows the flow of the continuous integration pipeline.
 When a developer makes a change to the application in the source code and pushed to GitHub, the webhook is triggered and the Jenkins pipeline will automatically run.
@@ -183,6 +186,7 @@ The pipeline runs the following stages:
 #### Deploy
 *Updates changed containers in the stack without redeploying the entire application or affecting the user experience*
 
+<a name="impl"></a>
 ### Switching Implementations
 The client asked for three different unique implementations to be included, these were for the prize generator, number generator and account generator. We have provided these and they can be seemlessly switched out for each other.
 The images used are as follows:
@@ -205,9 +209,8 @@ keepkarm/num_gen:v2
 If the bank's developers want to switch out any of these implementations for the other, all they need to do is edit the docker-compose.yaml file and push it up to git hub. They can swap the implementations for any of the services by changing both version number in the image name, and the number in the build args option. It is crucial to note that that **both numbers must match**. 
 When the new docker-compose.yaml is pushed to GitHub
 
-### Improvements for the Future
-Using a local registry would be helpful if deploying this application continuously. In cases of internet connection failures or dockerhub going down (which is not unlikely), images can still be easily accessed. 
-We suggest using a registry container to improve redundancy.
+<a name="risk"></a>
+## Project Planning
 
 <a name="tech"></a>
 ### Technologies Used
@@ -240,6 +243,10 @@ We used the three column format to lay out our risks and plot them on a risk imp
 #### Risk Impact Graph After:
 ![post-risk diagram](documentation/risk_management/post-risk_management.png)
 
+<a name="improve"></a>
+### Improvements for the Future
+Using a local registry would be helpful if deploying this application continuously. In cases of internet connection failures or dockerhub going down (which is not unlikely), images can still be easily accessed. 
+We suggest using a registry container to improve redundancy.
 
 <a name="auth"></a>
 ## Authors
