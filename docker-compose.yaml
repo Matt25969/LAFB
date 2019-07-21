@@ -44,10 +44,10 @@ services:
       - account
 
     text_gen:
-      image: keepkarm/text_gen:v2
+      image: keepkarm/text_gen:v1
       build:
         args:
-            FILE_VERSION: 2
+            FILE_VERSION: 1
         context: ./text_gen
         dockerfile: Dockerfile
       ports:
