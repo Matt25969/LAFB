@@ -3,10 +3,12 @@
 In fulfilment of the group DevOps project assignment due Monday week 11 at QA consulting.
 
 ## Index
-[Brief](#brief)
+[The Brief](#brief)
    
 [Architecture](#architecture)
-
+   * [Before](#arch-before)
+   * [After](#arch-after)
+   
 [Deployment](#depl)
    * [Prerequisites and Installation Guide](#prereq)
    * [CI Pipeline](#CI)
@@ -43,6 +45,8 @@ The implementations required are as follows:
 
 <a name="architecture"></a>
 # Architecture
+
+<a name="arch-before"></a>
 ### Before
 ![Architecture before](documentation/readme_diagrams/pre-architecture.png)
 
@@ -52,7 +56,7 @@ The first issue is that the application is monolithic so has a tightly coupled a
 
 Another issue present in the original architecture is that the application is served using an on-premise server. One disadvantage of this is the high cost associated with maintaining this type of server, for example ensuring adequate temperature control and ventilation can be very expensive. Furthermore, the level of security for an on-premise server is questionable. This is because internal sabotage is always a possibility whether this is a physical or cyber-attack. Finally, using an on-premise server limits the scalability of the application. This could be improved by adding additional servers. However, this option is not flexible as if the demand on the application decreases the cost of maintaining the additional servers is still present.    
 
-
+<a name="arch-after"></a>
 ### After
 ![Architecture after](documentation/readme_diagrams/post-architecture.png)
 
