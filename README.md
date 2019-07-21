@@ -57,23 +57,29 @@ To create an OOP-based application with utilisation of supporting tools, methodo
 
 1. Create a new resource group
 <p align="center">
+	
 **az group create –name devops -l uksouth**
 </p>
 
 2. Create a new virtual machine
 <p align="center">
+	
 **az vm create -g devops -n ManagerNode --image UbuntuLTS -l uksouth**
+
 *repeat this command at least once to create your worker nodes, renaming the machines in the -n tag (eg -n Worker1)*
 </p>
 
 3. Clone down the project within your ManagerNode
 <p align="center">
+	
 **git clone https://github.com/kryan1622/LAFB.git**
 </p>
 
 4. Install docker and jenkins with with the included scripts and follow the instructions
 <p align="center">
+	
 **sh ~/LAFB/installation/docker.sh**
+	
 *remember to copy this script and run it on your worker nodes*
 
 **sh ~/LAFB/installation/jenkins.sh**
@@ -83,12 +89,15 @@ To create an OOP-based application with utilisation of supporting tools, methodo
 
 1. Build docker images
 <p align="center">
+	
 **docker-compose build**
 </p>
 
 2. Push docker images to the desired dockerhub account by first logging onto dockerhub within the virtual machine
 <p align="center">
+	
 **docker login**
+	
 *Enter username and password when requested*
 
 **docker-compose push**
@@ -98,19 +107,23 @@ To create an OOP-based application with utilisation of supporting tools, methodo
 
 1. Initialise your swarm in the manager node
 <p align="center">
+	
 **docker swarm init**
+	
 *this will return a command with a unique token which you can run in any number of other virtual machines to set them up as your worker nodes*
 </p>
 
 2. Deploy containers with the built images in docker swarm
 <p align="center">
+	
 **docker stack deploy --compose-file docker-compose.yaml devops**
 </p>
 
 ##### Setting up Continuous Integration with Jenkins
 
-q. As the Jenkins user, login to a dockerhub account that has access to the registry:
+1. As the Jenkins user, login to a dockerhub account that has access to the registry:
 <p align="center">
+	
 **sudo su Jenkins**
 **docker login**
 *Enter username and password when requested*
@@ -118,6 +131,7 @@ q. As the Jenkins user, login to a dockerhub account that has access to the regi
 
 2. Expose port 8080 to access Jenkins externally using the command:
 <p align="center">
+	
 **az vm open-port -g devops -n devopsproject --port 8080 --priority 900**
 </p>
 
@@ -125,21 +139,22 @@ q. As the Jenkins user, login to a dockerhub account that has access to the regi
 
 4. Get password for initial screen in Jenkins using the command:
 <p align="center">
+	
 **sudo cat /var/lib/jenkins/secrets/initialAdminPassword**
 </p>
 
 5. On the customize Jenkins page select the option to Install suggested plugins, and create your username and password.
 
 6. Set up the pipeline
-..1. Create Jenkins pipeline by selecting the new item option. Then name the job and select the pipeline option.
+   1. Create Jenkins pipeline by selecting the new item option. Then name the job and select the pipeline option.
 
-..2. Then in the general section select the GitHub project option and copy in the URL below.
+   2. Then in the general section select the GitHub project option and copy in the URL below.
 https://github.com/kryan1622/LAFB.git
 
-..3. Create webhook by selecting the trigger build remotely option in the Build Triggers section and type in:
+   3. Create webhook by selecting the trigger build remotely option in the Build Triggers section and type in:
 DEVOPS
 
-..4. In the pipeline section, select the "Pipeline Script from SCM" option in "Definition". elect Git in the dropdown menu of SCM and copy in the URL used above into Repository URL.  
+   4. In the pipeline section, select the "Pipeline Script from SCM" option in "Definition". elect Git in the dropdown menu of SCM and copy in the URL used above into Repository URL.  
 
 To complete the webhook go into the settings option within the GitHub repository. Then select the webhook tab and select
 
