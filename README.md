@@ -131,7 +131,7 @@ To resolve the issue of the application being served using an on-premise server,
 
 	docker login
 
-*Enter username and password when requested*
+*enter username and password when requested*
 
 	docker-compose push
 
@@ -165,7 +165,7 @@ To resolve the issue of the application being served using an on-premise server,
 	
 	sudo su jenkins
 	docker login
-*Enter username and password when requested*
+*enter username and password when requested*
 
 </p>
 
