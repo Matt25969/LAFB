@@ -60,6 +60,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 <p align="center">
 	
 	az group create –name devops -l uksouth
+
 </p>
 
 2. Create a new virtual machine:
@@ -75,7 +76,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 3. Clone down the project within your ManagerNode
 
 <p align="center">
-	
+
 	git clone https://github.com/kryan1622/LAFB.git
 
 </p>
@@ -97,16 +98,16 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 1. Build docker images
 
 <p align="center">
-	
+
 	docker-compose build
 
 </p>
 
 2. Push docker images to the desired dockerhub account by first logging onto dockerhub within the virtual machine
 <p align="center">
-	
+
 	docker login
-	
+
 *Enter username and password when requested*
 
 	docker-compose push
@@ -120,7 +121,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 <p align="center">
 	
 	docker swarm init
-	
+
 *this will return a command with a unique token which you can run in any number of other virtual machines to set them up as your worker nodes*
 
 </p>
@@ -128,7 +129,7 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 2. Deploy containers with the built images in docker swarm
 
 <p align="center">
-	
+
 	docker stack deploy --compose-file docker-compose.yaml devops
 
 </p>
@@ -148,13 +149,15 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
 2. Expose port 8080 to access Jenkins externally using the command:
 
 <p align="center">
-	
+
 	az vm open-port -g devops -n devopsproject --port 8080 --priority 900
+  
 </p>
 
 3. Access Jenkins site using the public ip address of the virtual machine being used with the addition of :8080 at the end. For example:
 
 4. Get password for initial screen in Jenkins using the command:
+
 
 <p text align="center">
 	
