@@ -10,7 +10,8 @@ In fulfilment of the group DevOps project assignment due Monday week 11 at QA co
    * [After](#arch-after)
    
 [Deployment](#depl)
-   * [Prerequisites and Installation Guide](#prereq)
+   * [Prerequisites](#prereq)
+   * [Installation Guide](#install)
    * [CI Pipeline](#CI)
        * [Overview](#overview)
        * [Switching Implementations](#impl)
@@ -73,6 +74,7 @@ To resolve the issue of the application being served using an on-premise server,
 * At least one other Azure virtual machine with Docker installed
 * Access to a Dockerhub registry
 
+<a name="install"></a>
 ## Installing Jenkins, Docker and Docker Compose, and setting up the swarm
 
 ### Setting up the project:
